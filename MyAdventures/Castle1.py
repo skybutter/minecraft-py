@@ -10,36 +10,8 @@ HEIGHT=7
 
 # Function to build Turret
 def buildTower(x1, y1, z1, x2, y2, z2):
-    mc.setBlocks(x1, y1, z1, x2, y2, z2, block.STONE_BRICK.id)
+    mc.setBlocks(x1, y1, z1, x2, y2, z2, block.COBBLESTONE.id)
     mc.setBlocks(x1+1, y1, z1+1, x2 - 1, y2, z2 - 1, block.AIR.id)
-    # Build block on wall every other block - West
-    a = x1
-    b = y2 + 1
-    c = z1
-    while c <= z2:
-        mc.setBlock(a, b, c, block.STONE_BRICK.id)
-        c = c + 2
-    # Build block on wall every other block - East
-    a = x2
-    b = y2 + 1
-    c = z1
-    while c <= z2:
-        mc.setBlock(a, b, c, block.STONE_BRICK.id)
-        c = c + 2
-    # Build block on wall every other block - North
-    a = x1
-    b = y2 + 1
-    c = z1
-    while a <= x2:
-        mc.setBlock(a, b, c, block.STONE_BRICK.id)
-        a = a + 2
-    # Build block on wall every other block - South
-    a = x1
-    b = y2 + 1
-    c = z2
-    while a <= x2:
-        mc.setBlock(a, b, c, block.STONE_BRICK.id)
-        a = a + 2
 
 # Get current position
 pos = mc.player.getTilePos()
@@ -58,7 +30,7 @@ z1 = z
 x2 = x1 + SIZE
 y2 = y1
 z2 = z1 + SIZE
-mc.setBlocks(x1, y1, z1, x2, y2, z2, block.WATER.id)
+mc.setBlocks(x1, y1, z1, x2, y2, z2, block.ICE.id)
 x1 = x+trenchWidth
 y1 = y-1
 z1 = z+trenchWidth
@@ -66,11 +38,10 @@ x2 = x1 + SIZE - (2*trenchWidth)
 y2 = y1
 z2 = z1 + SIZE - (2*trenchWidth)
 mc.setBlocks(x1, y1, z1, x2, y2, z2, block.WOOL.id)
-#
+
 # Build Main Castle
-#
 mainCastleLen = SIZE - (2*trenchWidth) - 2
-mainCastleHt = HEIGHT - 3
+mainCastleHt = HEIGHT - 2
 x1 = x + trenchWidth + 1
 y1 = y
 z1 = z + trenchWidth + 1
@@ -78,43 +49,13 @@ x2 = x1 + mainCastleLen
 y2 = y1 + mainCastleHt
 z2 = z1 + mainCastleLen
 mc.setBlocks(x1, y1, z1, x2, y2, z2, block.COBBLESTONE.id)
-thick = 2
-x1 = x1 + thick
+x1 = x1 + 1
 y1 = y
-z1 = z1 + thick
-x2 = x2 - thick
+z1 = z1 + 1
+x2 = x2 - 1
 y2 = y2
-z2 = z2 - thick
+z2 = z2 - 1
 mc.setBlocks(x1, y1, z1, x2, y2, z2, block.AIR.id)
-# Build block on wall every other block - West
-a = x + trenchWidth + 1
-b = y2 + 1
-c = z + trenchWidth + 1
-while c < z2 :
-    c = c + 2
-    mc.setBlock(a, b, c, block.COBBLESTONE.id)
-# Build block on wall every other block - East
-a = x + trenchWidth + 1 + mainCastleLen
-b = y2 + 1
-c = z + trenchWidth + 1
-while c < z2 :
-    c = c + 2
-    mc.setBlock(a, b, c, block.COBBLESTONE.id)
-# Build block on wall every other block - North
-a = x + trenchWidth + 1
-b = y2 + 1
-c = z + trenchWidth + 1
-while a < x2 :
-    a = a + 2
-    mc.setBlock(a, b, c, block.COBBLESTONE.id)
-# Build block on wall every other block - South
-a = x + trenchWidth + 1
-b = y2 + 1
-c = z + trenchWidth + 1 + mainCastleLen
-while a < x2 :
-    a = a + 2
-    mc.setBlock(a, b, c, block.COBBLESTONE.id)
-
 
 # Build Doorway (Clear out wall) & Trench Bridge
 x1 = x + trenchWidth + 1
@@ -133,7 +74,7 @@ y2 = y1
 mc.setBlocks(x1, y1, z1, x2, y2, z2, block.WOOD.id)
 
 # Building Tower
-TOWERLEN = 4  # Best be even number
+TOWERLEN = 5  # Best be odd number
 towerHt = HEIGHT-1
 # Build Tower 1 (North-West)
 x1 = x + trenchWidth
